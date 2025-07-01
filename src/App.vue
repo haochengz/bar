@@ -1,3 +1,5 @@
+<!--App.vue is the root component of a modular Vue project. Child components
+(like HelloWorld.vue) must be imported before use.-->
 <script setup lang="ts">
 import HelloWorld from './components/HelloWorld.vue'
 </script>
@@ -5,13 +7,26 @@ import HelloWorld from './components/HelloWorld.vue'
 <template>
   <div>
     <a href="https://vite.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
+      <img src="/vite.svg" class="logo" alt="Vite logo">
+      <!--
+      <img src="/vite.svg"...> The image is loaded from the public folder.
+      <img alt="Vite logo"...> The alt attribute improves accessibility.
+      -->
     </a>
     <a href="https://vuejs.org/" target="_blank">
       <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
+      <!--
+      <img src="./assets/vue.svg"...> The image is loaded from the 
+      src/assets folder. Unlike /public, this path is processed by Vite
+      as a module import.
+      -->
     </a>
   </div>
   <HelloWorld msg="Vite + Vue" />
+  <!--
+  <HelloWorld /> passes a prop msg to the child component. The child can
+  receive it using defineProps().
+  -->
 </template>
 
 <style scoped>
