@@ -1,10 +1,10 @@
-import { createApp } from 'vue'
-import './style.css'
-import App from './App.vue'
+import { createApp } from "vue";
+import "./style.css";
+import App from "./App.vue";
 
-createApp(App).mount('#app');
+createApp(App).mount("#app");
 
-// In a Vue project, main.ts is the entry point of the application. It is 
+// In a Vue project, main.ts is the entry point of the application. It is
 // responsible for importing the root component (ussally App.vue) and global
 // styles (such as style.css), and it uses createApp(App).mount('#app') to
 // mount the application to the <div> element with id="app" in index.html.
@@ -19,4 +19,4 @@ createApp(App).mount('#app');
 // import it in the script and then include it in the template. This approach
 // enables modular development, component reuse, and flexible UI composition.
 
-console.log('ENV: ', import.meta.env);
+console.log("ENV: ", import.meta.env);

@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc -b && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "lint": "eslint . --ext .ts,.js,.vue",
+    "lint:fix": "eslint . --ext .ts,.js,.vue --fix"
   },
   "dependencies": {
     "dotenv": "^17.0.1",
@@ -14,12 +16,23 @@
     "vue": "^3.5.17"
   },
   "devDependencies": {
+    "@eslint/js": "^9.30.1",
     "@types/good-storage": "^1.1.2",
     "@types/node": "^24.0.10",
+    "@typescript-eslint/eslint-plugin": "^8.35.1",
+    "@typescript-eslint/parser": "^8.35.1",
     "@vitejs/plugin-vue": "^6.0.0",
     "@vue/tsconfig": "^0.7.0",
+    "eslint": "^9.30.1",
+    "eslint-config-prettier": "^10.1.5",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^5.5.1",
+    "eslint-plugin-vue": "^10.3.0",
     "follow-redirects": "^1.15.9",
+    "globals": "^16.3.0",
     "typescript": "~5.8.3",
+    "typescript-eslint": "^8.35.1",
     "vite": "^7.0.0",
     "vue-tsc": "^2.2.10"
   }
