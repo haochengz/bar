@@ -2,6 +2,8 @@
 (like HelloWorld.vue) must be imported before use.-->
 <script setup lang="ts">
 import HelloWorld from './components/HelloWorld.vue'
+
+import Images from './utils/images';
 </script>
 
 <template>
@@ -27,6 +29,9 @@ import HelloWorld from './components/HelloWorld.vue'
   <HelloWorld /> passes a prop msg to the child component. The child can
   receive it using defineProps().
   -->
+  <img :src="Images.getImage('img14.jpg')" alt="Dynamic Image" />
+  <img :src="Images.getImage('img34.jpg')" alt="Dynamic Image" />
+  <img :src="Images.getImage('img84.jpg')" alt="Dynamic Image" />
 </template>
 
 <style scoped>
