@@ -1,12 +1,11 @@
-
-import goodStorage from 'good-storage';
+import goodStorage from "good-storage";
 
 export default class Images {
   static images: Record<string, string> = {};
 
   static loadAll() {
     Images.images = goodStorage.get("images", {});
-    if(Images.isEmpty()) {
+    if (Images.isEmpty()) {
       Images.requestImages();
     }
   }
