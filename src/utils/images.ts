@@ -1,10 +1,10 @@
-import goodStorage from "good-storage";
+import goodStorage from 'good-storage';
 
 export default class Images {
   static images: Record<string, string> = {};
 
   static loadAll() {
-    Images.images = goodStorage.get("images", {});
+    Images.images = goodStorage.get('images', {});
     if (Images.isEmpty()) {
       Images.requestImages();
     }
@@ -34,21 +34,16 @@ export default class Images {
      *   without writing repetitive import statements.
      */
 
-    const imgMap = import.meta.glob(
-      "../assets/img/**/*.{png,jpg,jpeg,gif,svg}",
-      { eager: true }
-    );
+    const imgMap = import.meta.glob('../assets/img/**/*.{png,jpg,jpeg,gif,svg}', { eager: true });
     for (const imagePath in imgMap) {
-      const imageFilename: string = imagePath.split("/").pop() || "";
-      Images.images[imageFilename] = (
-        imgMap[imagePath] as { default: string }
-      ).default;
+      const imageFilename: string = imagePath.split('/').pop() || '';
+      Images.images[imageFilename] = (imgMap[imagePath] as { default: string }).default;
     }
-    goodStorage.set("images", Images.images);
+    goodStorage.set('images', Images.images);
   }
 
   static getImage(name: string): string {
     Images.loadAll(); // Ensure images are loaded
-    return Images.images[name] || "";
+    return Images.images[name] || '';
   }
 }

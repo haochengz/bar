@@ -14,21 +14,21 @@
 // If you are using `<script setup>`, you don't need to return anything,
 // the variables defined in the script will be automatically available in the
 // template.
-import { ref } from 'vue'
+import { ref } from 'vue';
 // `ref` is a fundamental reactive data structure in Vue. Its purpose is to
 // make primitive data types reactive so that their values can be accessed
 // in the template. Reactive means that Vue automatically tracks changes to
 // reactive variables, and whenever these variables change, the DOM is updated
 // accordingly, reflecting the changes in the UI.
 
-defineProps<{ msg: string }>()
+defineProps<{ msg: string }>();
 // When receiving a variable from a paren component, you can pass it as a prop.
 // In the child component, you can use `defineProps` to receive it. The
 // received value can be used directly in the template, and it is reactive - if
 // the parent updates the value, the UI in the child component will
 // automatically update.
 
-const count = ref(0)
+const count = ref(0);
 // This defines a reactive object `count`, whose actual value is stored in
 // `count.value`. However, in the template, you can directly use `count` - Vue
 // will automatically unwrap the value and update the DOM reactively.
@@ -62,17 +62,14 @@ const count = ref(0)
 
   <p>
     Check out
-    <a href="https://vuejs.org/guide/quick-start.html#local" target="_blank"
-      >create-vue</a
-    >, the official Vue + Vite starter
+    <a href="https://vuejs.org/guide/quick-start.html#local" target="_blank">create-vue</a>, the
+    official Vue + Vite starter
     <!--This is an external link. The target="_blank" attribute makes the link
     open in a new browser tab.-->
   </p>
   <p>
     Learn more about IDE Support for Vue in the
-    <a
-      href="https://vuejs.org/guide/scaling-up/tooling.html#ide-support"
-      target="_blank"
+    <a href="https://vuejs.org/guide/scaling-up/tooling.html#ide-support" target="_blank"
       >Vue Docs Scaling up Guide</a
     >.
   </p>

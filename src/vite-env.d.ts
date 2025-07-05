@@ -6,7 +6,7 @@
 
 // vite-env.d.ts is a standard TypeScript declaration file (with the .d.ts
 // extension). It is not required by Vite but is a common convention in
-// Vite + TypeScript projects. Its primary job is to declare types for 
+// Vite + TypeScript projects. Its primary job is to declare types for
 // Vite-specific globals and runtime interfaces (such as import.meta.env) so
 // that TypeScript can recognize them and provide proper type support during
 // development.
@@ -40,8 +40,8 @@
 // experience with better type checking and editor support.
 
 interface ImportMetaEnv {
-    VITE_db_username: string;
-};
+  VITE_db_username: string;
+}
 // Environment variables are essential for configuring how a Vue project built
 // with Vite behaves across different environments (development or production).
 // They allow you to separate configuration from code, making your application
@@ -67,6 +67,6 @@ interface ImportMetaEnv {
 // variables. This ensures security and consistency across development setups.
 
 // TypeScript, by default, does not recognize custom environment variables, so
-// it's necessary to declare them explicitly to benefit from type checking and 
+// it's necessary to declare them explicitly to benefit from type checking and
 // auto-completion. This is usually done in a global declaration file such as
 // vite-env.d.ts.

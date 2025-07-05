@@ -1,9 +1,9 @@
 <!--App.vue is the root component of a modular Vue project. Child components
 (like HelloWorld.vue) must be imported before use.-->
 <script setup lang="ts">
-  import HelloWorld from "./components/HelloWorld.vue";
+import HelloWorld from './components/HelloWorld.vue';
 
-  import Images from "./utils/images";
+import Images from './utils/images';
 </script>
 
 <template>
@@ -37,16 +37,16 @@
 </template>
 
 <style scoped>
-  .logo {
-    height: 6em;
-    padding: 1.5em;
-    will-change: filter;
-    transition: filter 300ms;
-  }
-  .logo:hover {
-    filter: drop-shadow(0 0 2em #646cffaa);
-  }
-  .logo.vue:hover {
-    filter: drop-shadow(0 0 2em #42b883aa);
-  }
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.vue:hover {
+  filter: drop-shadow(0 0 2em #42b883aa);
+}
 </style>
