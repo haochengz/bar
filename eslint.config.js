@@ -21,6 +21,7 @@ export default defineConfig([
     languageOptions: { parserOptions: { parser: tseslint.parser } },
   },
   {
+    files: ["**/*.{js,mjs,cjs,ts,mts,cts,vue}"],
     rules: { "prettier/prettier": ["error"] },
   },
 ]);
