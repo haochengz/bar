@@ -1,20 +1,17 @@
 import Koa from 'koa';
-import Router from 'koa-router';
-import { koaBody } from 'koa-body';
 
-import userRouter from './routes/user';
+import load from './common/loader';
 
 const PORT: number = 3002;
-
 const app = new Koa();
-const router = new Router();
 
-app.use(router.routes());
+const status = await load(app); // Load plugins or initialize components
 
-router.prefix('/api');
-router.use(koaBody());
-router.use(userRouter.routes(), userRouter.allowedMethods());
-
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
-});
+if (status) {
+  app.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}`);
+  });
+} else {
+  console.error('Failed to load the application components.');
+  process.exit(1);
+}
