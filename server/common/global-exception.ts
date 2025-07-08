@@ -1,4 +1,6 @@
-export default async function globalExceptionHandler(ctx, next) {
+import Koa from 'koa';
+
+export default async function globalExceptionHandler(ctx: Koa.Context, next: Koa.Next) {
   try {
     await next();
   } catch (err) {
