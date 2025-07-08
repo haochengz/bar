@@ -1,12 +1,13 @@
 import Router from 'koa-router';
+import Koa from 'koa';
 
 const router = new Router();
 
 router.prefix('/user');
 
-router.get('/:username', async (ctx, next) => {
+router.get('/:username', async (ctx: Koa.Context, next: Koa.Next) => {
   const username = ctx.params.username;
-  ctx.body = `Hello, ${username}`;
+  ctx.body = ctx.ok(`Hello, ${username}`);
   await next();
 });
 
