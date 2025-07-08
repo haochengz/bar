@@ -17,13 +17,16 @@ export default async function getRouter() {
 
   for (const file of files) {
     if (!file.endsWith('.ts') && !file.endsWith('.js')) continue;
+    // fullPaht: /home/user/project/foo.ts
+    // which is the absolute path to the file
     const fullPath = path.join(routesDir, file);
+    // fileUrl: file:///home/user/project/foo.ts
+    // which is the url to the file for esm import
     const fileUrl = pathToFileURL(fullPath).href;
     const mudule = await import(fileUrl);
     const router = mudule.default || mudule;
 
     if (router instanceof Router) {
-      console.log('Find routers: ', router);
       console.log(`Registering route from ${file}`);
       rootRouter.use(router.routes(), router.allowedMethods());
     } else {
