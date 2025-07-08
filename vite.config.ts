@@ -29,5 +29,8 @@ export default defineConfig(mode => {
     base: '/view',
     plugins: [vue()],
     server,
+    build: {
+      outDir: 'dist/view',
+    },
   };
 });

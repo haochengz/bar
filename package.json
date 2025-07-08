@@ -8,11 +8,14 @@
     "build": "vue-tsc -b && vite build",
     "preview": "vite preview",
     "lint": "eslint . --ext .ts,.js,.vue",
-    "lint:fix": "eslint . --ext .ts,.js,.vue --fix"
+    "lint:fix": "eslint . --ext .ts,.js,.vue --fix",
+    "server-dev": "tsx server/app.ts"
   },
   "dependencies": {
+    "@types/koa": "^2.15.0",
     "dotenv": "^17.0.1",
     "good-storage": "^1.1.1",
+    "koa": "^3.0.0",
     "vue": "^3.5.17"
   },
   "devDependencies": {
@@ -31,6 +34,7 @@
     "eslint-plugin-vue": "^10.3.0",
     "follow-redirects": "^1.15.9",
     "globals": "^16.3.0",
+    "tsx": "^4.20.3",
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.35.1",
     "vite": "^7.0.0",
