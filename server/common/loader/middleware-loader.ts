@@ -5,6 +5,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 
 const MIDDLEWARES = [
   // Add your middlewares here
+  'request',
   'global-responder',
   'global-exception',
 ];

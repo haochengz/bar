@@ -21,12 +21,14 @@
     "koa-body": "^6.0.1",
     "koa-json": "^2.0.2",
     "koa-router": "^13.1.1",
+    "log4js": "^6.9.1",
     "vue": "^3.5.17"
   },
   "devDependencies": {
     "@eslint/js": "^9.30.1",
     "@types/good-storage": "^1.1.2",
     "@types/koa-router": "^7.4.8",
+    "@types/log4js": "^0.0.33",
     "@types/node": "^24.0.10",
     "@typescript-eslint/eslint-plugin": "^8.35.1",
     "@typescript-eslint/parser": "^8.35.1",
