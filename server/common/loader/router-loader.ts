@@ -1,3 +1,4 @@
+import Koa from 'koa';
 import { koaBody } from 'koa-body';
 import Router from 'koa-router';
 import fs from 'node:fs';
@@ -5,9 +6,9 @@ import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const routesDir = path.join(__dirname, '../routes');
+const routesDir = path.join(__dirname, '../../routes');
 
-export default async function getRouter() {
+export default async function routerLoader(app: Koa) {
   const rootRouter = new Router();
   const files = fs.readdirSync(routesDir);
   console.log('Find route files: ', files);
@@ -34,7 +35,5 @@ export default async function getRouter() {
     }
   }
 
-  // router.use()
-
-  return rootRouter;
+  app.use(rootRouter.routes());
 }

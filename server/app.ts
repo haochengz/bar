@@ -1,6 +1,6 @@
 import Koa from 'koa';
 
-import load from './common/loader';
+import load from './common/loader/app-loader';
 
 const PORT: number = 3002;
 const app = new Koa();
