@@ -9,7 +9,7 @@ import '../utils/logger'; // Initialize logger
 import dbConnect from './db-loader';
 
 export default async function laod(app: Koa) {
-  (globalThis as any).logger.info('Loading application components...');
+  global.logger.info('Loading application components...');
 
   await dbConnect();
 

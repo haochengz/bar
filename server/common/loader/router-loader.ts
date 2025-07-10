@@ -11,8 +11,7 @@ const routesDir = path.join(__dirname, '../../routes');
 export default async function routerLoader(app: Koa) {
   const rootRouter = new Router();
   const files = fs.readdirSync(routesDir);
-  (globalThis as any).logger.info('Loading routes...');
-  (globalThis as any).logger.debug(`Found route files: ${files.join(', ')}`);
+  global.logger.info('Find route files: ', files);
 
   rootRouter.use(koaBody());
   rootRouter.prefix('/api');
@@ -29,11 +28,11 @@ export default async function routerLoader(app: Koa) {
     const router = mudule.default || mudule;
 
     if (router instanceof Router) {
-      (globalThis as any).logger.info(`Registering route from ${file}`);
+      global.logger.info(`Registering route from ${file}`);
       rootRouter.use(router.routes(), router.allowedMethods());
     } else {
-      (globalThis as any).logger.error(`File ${file} does not export a valid Router instance.`);
-      (globalThis as any).logger.error(`Please check the middleware: ${file}`);
+      global.logger.error(`File ${file} does not export a valid Router instance.`);
+      global.logger.error(`Please check the middleware: ${file}`);
     }
   }
 

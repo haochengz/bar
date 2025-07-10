@@ -63,7 +63,7 @@ log4js.configure({
 
 const logger = log4js.getLogger();
 
-// 可选：挂载到全局
-(globalThis as any).logger = logger;
+// 挂载到全局，现在有类型支持
+global.logger = logger;
 
 export default logger;

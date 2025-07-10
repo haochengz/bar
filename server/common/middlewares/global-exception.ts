@@ -4,7 +4,7 @@ export default async function globalExceptionHandler(ctx: Koa.Context, next: Koa
   try {
     await next();
   } catch (err) {
-    (globalThis as any).logger.error('Global Exception Handler:', err);
+    global.logger.error('Global Exception Handler:', err);
     ctx.body = ctx.fail('Internal Server Error by Global Exception Handler');
   }
 }

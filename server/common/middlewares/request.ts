@@ -5,5 +5,5 @@ export default async function requestLogger(ctx: Koa.Context, next: Koa.Next) {
   await next();
   const ms = Date.now() - start;
 
-  (globalThis as any).logger.info(`${ctx.method} ${ctx.url} - ${ms}ms`);
+  global.logger.info(`${ctx.method} ${ctx.url} - ${ms}ms`);
 }
