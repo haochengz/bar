@@ -15,17 +15,22 @@ const middlewaresDir = path.join(__dirname, '../middlewares');
 
 export default async function MiddlewareLoader(app: Koa) {
   const files = fs.readdirSync(middlewaresDir);
-  console.log('Find middleware files: ', files);
+  (globalThis as any).logger.info('Loading middlewares...');
+  (globalThis as any).logger.debug(`Found middlewares: ${files.join(', ')}`);
 
   for (const file of MIDDLEWARES) {
     const filePath = path.join(middlewaresDir, `${file}.ts`);
     const fileUrl = pathToFileURL(filePath).href;
 
-    console.log(`Loading middleware from ${fileUrl}`);
+    (globalThis as any).logger.info(`Loading middleware from ${fileUrl}`);
 
-    const module = await import(fileUrl);
-    const middleware = module.default || module;
-
-    app.use(middleware);
+    try {
+      const module = await import(fileUrl);
+      const middleware = module.default || module;
+      app.use(middleware);
+    } catch (error) {
+      (globalThis as any).logger.fatal(`Failed to load middleware ${file}:`, error);
+      process.exit(1); // Exit the process if middleware loading fails
+    }
   }
 }

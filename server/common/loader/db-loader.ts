@@ -1,19 +1,19 @@
 import { sequelize } from '../db';
 
 export default async function load(): Promise<boolean> {
-  console.log('Loading database connection...');
+  (globalThis as any).logger.info('Loading database connection...');
 
   try {
     // Test the database connection
     await sequelize.authenticate();
-    console.log('Database connection established successfully.');
+    (globalThis as any).logger.info('Database connection established successfully.');
 
     await sequelize.sync({ alter: true });
-    console.log('Database synchronized successfully.');
+    (globalThis as any).logger.info('Database synchronized successfully.');
 
     return true;
   } catch (error) {
-    console.error('Unable to connect to the database:', error);
-    return false;
+    (globalThis as any).logger.fatal('Database connection failed:', error);
+    process.exit(1); // Exit the process if the database connection fails
   }
 }

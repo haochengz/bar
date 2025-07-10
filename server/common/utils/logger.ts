@@ -1,40 +1,69 @@
 import path from 'node:path';
 import log4js from 'log4js';
 import { fileURLToPath } from 'node:url';
+import fs from 'node:fs';
 
+// 计算 __dirname
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const logDir = path.join(__dirname, '../../logs');
 
+// 确保日志目录存在
+if (!fs.existsSync(logDir)) {
+  fs.mkdirSync(logDir, { recursive: true });
+}
+
 log4js.configure({
   appenders: {
+    // 控制台输出
     console: { type: 'console' },
-    info: {
-      type: 'file',
+
+    // info 级别及以下写入 info.log（按天分文件）
+    infoFile: {
+      type: 'dateFile',
       filename: path.join(logDir, 'info.log'),
-      maxLogSize: 10485760, // 10MB
-      backups: 3,
-      compress: true,
+      pattern: 'yyyy-MM-dd',
+      daysToKeep: 7,
+      keepFileExt: true,
+      alwaysIncludePattern: true,
     },
-    error: {
-      type: 'file',
+
+    // error 和 fatal 写入 error.log（按天分文件）
+    errorFile: {
+      type: 'dateFile',
       filename: path.join(logDir, 'error.log'),
-      maxLogSize: 10485760, // 10MB
-      backups: 3,
-      compress: true,
+      pattern: 'yyyy-MM-dd',
+      daysToKeep: 7,
+      keepFileExt: true,
+      alwaysIncludePattern: true,
     },
+
+    // 使用 logLevelFilter 控制 errorFile 的过滤级别
     errorFilter: {
       type: 'logLevelFilter',
+      appender: 'errorFile',
       level: 'error',
-      appender: 'error',
+    },
+
+    // 控制台过滤器，只打印 fatal, error, debug
+    consoleFilter: {
+      type: 'logLevelFilter',
+      appender: 'console',
+      level: 'debug',
+      maxLevel: 'error',
     },
   },
+
   categories: {
-    default: { appenders: ['console'], level: 'info' },
-    file: { appenders: ['info'], level: 'debug' },
-    error: { appenders: ['errorFilter'], level: 'error' },
+    default: {
+      appenders: ['infoFile', 'errorFilter', 'consoleFilter'],
+      level: 'debug',
+    },
   },
 });
 
-const logger = log4js.getLogger('file');
+const logger = log4js.getLogger();
+
+// 可选：挂载到全局
+(globalThis as any).logger = logger;
 
 export default logger;
