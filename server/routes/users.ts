@@ -1,6 +1,8 @@
 import Router from 'koa-router';
 import Koa from 'koa';
 
+import { User } from '../common/db/models';
+
 const router = new Router();
 
 router.prefix('/user');
@@ -14,7 +16,8 @@ router.get('/:username', async (ctx: Koa.Context, next: Koa.Next) => {
 router.post('/', async (ctx, next) => {
   const user = ctx.request.body;
   console.log('User data received:', user);
-  ctx.body = `You are trying to add a new user with data: ${user.username}`;
+  const newU = await User.create(user);
+  ctx.body = ctx.ok(`Successfully created user: ${JSON.stringify(newU)}`);
   await next();
 });
 
