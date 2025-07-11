@@ -23,7 +23,7 @@ router.post('/', async (ctx, next) => {
   const user = ctx.request.body;
   console.log('User data received:', user);
   const newUser = await userService.createUser(user);
-  global.logger.info(`Successfully create user: ${newUser.username}`);
+  global.logger.info(`Successfully created user: ${newUser.username}`);
   ctx.body = ctx.ok(`Successfully created user: ${newUser.username}`);
   await next();
 });
