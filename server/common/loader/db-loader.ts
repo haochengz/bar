@@ -1,7 +1,7 @@
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
-import { sequelize } from '../db';
+import { sequelize } from '../db/mysql';
 
 import findBySuffix from '../utils/findBySuffix';
 
