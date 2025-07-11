@@ -1,6 +1,7 @@
+import { FindOptions } from 'sequelize';
 import { Table, Column, Model, DataType } from 'sequelize-typescript';
 
-interface UserAttributes {
+export interface UserAttributes {
   id: number;
   username: string;
   password: string;
@@ -8,7 +9,7 @@ interface UserAttributes {
   isActive: boolean;
 }
 
-interface UserCreationAttributes extends Omit<UserAttributes, 'id'> {}
+export interface UserCreationAttributes extends Omit<UserAttributes, 'id'> {}
 
 @Table({
   tableName: 'users',
@@ -49,4 +50,18 @@ export default class User
     defaultValue: true,
   })
   declare isActive: boolean;
+
+  // Additional methods or virtuals can be added here
+
+  static async findByUsername(username: string): Promise<User | null> {
+    return this.findOne({ where: { username } });
+  }
+
+  static async createUser(userData: UserCreationAttributes): Promise<User> {
+    return this.create(userData);
+  }
+
+  static async findAllUsers(options?: FindOptions): Promise<User[]> {
+    return this.findAll(options);
+  }
 }
