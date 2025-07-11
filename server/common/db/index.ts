@@ -1,5 +1,4 @@
 import { Sequelize } from 'sequelize-typescript';
-import { User } from './models/user.model';
 
 export const sequelize = new Sequelize({
   database: process.env.DB_DATABASE,
@@ -10,6 +9,3 @@ export const sequelize = new Sequelize({
   port: process.env.DB_PORT ? Number(process.env.DB_PORT) : 3306,
   logging: false, // Disable logging for production
 });
-
-// Add models manually
-sequelize.addModels([User]);

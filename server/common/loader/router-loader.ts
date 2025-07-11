@@ -1,29 +1,30 @@
 import Koa from 'koa';
 import { koaBody } from 'koa-body';
 import Router from 'koa-router';
-import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
+import findBySuffix from '../utils/findBySuffix';
+
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const routesDir = path.join(__dirname, '../../routes');
+const routesDir = path.join(__dirname, '../../modules');
 
 export default async function routerLoader(app: Koa) {
   const rootRouter = new Router();
-  const files = fs.readdirSync(routesDir);
+  const files = findBySuffix(routesDir, 'route.ts');
   global.logger.info('Find route files: ', files);
 
   rootRouter.use(koaBody());
   rootRouter.prefix('/api');
 
   for (const file of files) {
-    if (!file.endsWith('.ts') && !file.endsWith('.js')) continue;
-    // fullPaht: /home/user/project/foo.ts
+    if (!file.endsWith('route.ts') && !file.endsWith('route.js')) continue;
+    // path of file is fullpath like: /home/user/project/foo.ts
     // which is the absolute path to the file
-    const fullPath = path.join(routesDir, file);
+
     // fileUrl: file:///home/user/project/foo.ts
     // which is the url to the file for esm import
-    const fileUrl = pathToFileURL(fullPath).href;
+    const fileUrl = pathToFileURL(file).href;
     const mudule = await import(fileUrl);
     const router = mudule.default || mudule;
 
