@@ -30,11 +30,11 @@ export default async function load(): Promise<boolean> {
 }
 
 async function loadModels() {
-  const files = findBySuffix(modelsDir, 'dao.ts');
+  const files = findBySuffix(modelsDir, 'model.ts');
   global.logger.info('Find model files: ', files);
 
   for (const file of files) {
-    if (!file.endsWith('dao.ts') && !file.endsWith('dao.js')) continue;
+    if (!file.endsWith('model.ts') && !file.endsWith('model.js')) continue;
 
     // fileUrl: file:///home/user/project/foo.model.ts
     // which is the url to the file for esm import
