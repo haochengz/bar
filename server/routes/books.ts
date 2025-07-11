@@ -7,7 +7,7 @@ router.prefix('/book');
 
 router.get('/:bookid', async (ctx: Koa.Context, next: Koa.Next) => {
   const username = ctx.params.username;
-  ctx.body = ctx.g.ok(`Hello, ${username}`);
+  ctx.body = ctx.ok(`Hello, ${username}`);
   await next();
 });
 
