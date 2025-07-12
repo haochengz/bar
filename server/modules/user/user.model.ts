@@ -9,7 +9,7 @@ export interface UserAttributes {
   isActive: boolean;
 }
 
-export interface UserCreationAttributes extends Omit<UserAttributes, 'id'> {}
+export type UserCreationAttributes = Omit<UserAttributes, 'id'>;
 
 @Table({
   tableName: 'users',
