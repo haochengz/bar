@@ -9,7 +9,8 @@
     "preview": "vite preview",
     "lint": "eslint . --ext .ts,.js,.vue",
     "lint:fix": "eslint . --ext .ts,.js,.vue --fix",
-    "server-dev": "tsx --tsconfig tsconfig.server.json server/app.ts"
+    "server-dev": "tsx --tsconfig tsconfig.server.json server/app.ts",
+    "count": "cloc . --exclude-dir=node_modules,dist,build,coverage,public,.git,.vscode --not-match-f='package-lock\\.json' --exclude-lang=SVG,Markdown"
   },
   "dependencies": {
     "@types/body": "^5.1.4",
