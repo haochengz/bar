@@ -3,10 +3,11 @@ import globals from 'globals';
 import tseslint from 'typescript-eslint';
 import pluginVue from 'eslint-plugin-vue';
 import { defineConfig } from 'eslint/config';
+import prettier from 'eslint-plugin-prettier';
 
 export default defineConfig([
   {
-    files: ['**/*.{js,mjs,cjs,ts,mts,cts,vue}'],
+    files: ['**/*.{js,mjs,cjs}'],
     plugins: { js },
     extends: ['js/recommended'],
   },
@@ -15,7 +16,7 @@ export default defineConfig([
     languageOptions: { globals: globals.browser },
   },
   {
-    files: ['server/**/*.ts'],
+    files: ['server/**/*.ts', 'vite.config.ts'],
     languageOptions: {
       globals: globals.node,
       parserOptions: {
@@ -31,6 +32,25 @@ export default defineConfig([
   },
   {
     files: ['**/*.{js,mjs,cjs,ts,mts,cts,vue}'],
+    plugins: { prettier },
     rules: { 'prettier/prettier': ['error'] },
+  },
+  {
+    ignores: [
+      'node_modules',
+      'dist',
+      'build',
+      'coverage',
+      'public',
+      'out',
+      'tmp',
+      'temp',
+      '.cache',
+      '.next',
+      '.nuxt',
+      '.vercel',
+      '.output',
+      'script',
+    ],
   },
 ]);
