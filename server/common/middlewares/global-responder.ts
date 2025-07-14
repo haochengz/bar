@@ -5,7 +5,7 @@ enum Code {
   fail = 500,
 }
 
-function responder(data: any = null, message: string = '', code: Code) {
+function responder<T>(data: T, message: string = '', code: Code) {
   return {
     code,
     data,
@@ -13,12 +13,12 @@ function responder(data: any = null, message: string = '', code: Code) {
   };
 }
 
-function ok(data: any = null, message: string = 'ok') {
+function ok<T>(data: T, message: string = 'ok') {
   return responder(data, message, Code.ok);
 }
 
 function fail(message: string = 'Server Fail') {
-  return responder(null, message, Code.fail);
+  return responder<null>(null, message, Code.fail);
 }
 
 export default async function (ctx: Koa.Context, next: Koa.Next) {
