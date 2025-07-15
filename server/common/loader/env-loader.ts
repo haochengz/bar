@@ -1,5 +1,7 @@
 import 'dotenv/config';
 
+console.log('Setting up environment for ', process.env.ENV);
+
 if (process.env.ENV === 'development') {
   process.env.DB_HOST = process.env.DEV_DB_HOST;
   process.env.DB_PORT = process.env.DEV_DB_PORT;

@@ -7,6 +7,34 @@ const router = new Router();
 
 router.prefix('/users');
 
+// create a new user
+
+// delete a user
+
+// update a user
+
+// get a user
+
+// get all users
+
+// get all users with pagination
+
+// get all users with filter
+
+// get all users with filter and pagination
+
+// get all users with sorting
+
+// get all users with sorting and pagination
+
+// get all users with search
+
+// get all users with search and pagination
+
+// sending the varification email
+
+// update password
+
 router.get('/', async (ctx, next) => {
   const users = await userService.findAllUsers();
   ctx.body = ok(users);

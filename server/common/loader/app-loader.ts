@@ -3,7 +3,7 @@ import Koa from 'koa';
 import routerLoader from './router-loader';
 import MiddlewareLoader from './middleware-loader';
 
-import '../env'; // Load environment variables
+import './env-loader'; // Load environment variables
 import '../utils/logger'; // Initialize logger
 
 import dbConnect from './db-loader';
